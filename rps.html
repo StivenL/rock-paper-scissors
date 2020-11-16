@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Picks a RPS choice for computer
+        function computerPlay() {
+            const num = (Math.random() * 3)
+            if (num <= 1) {
+                return 'Rock'
+            } else if (num >= 2) {
+                return 'Scissor'
+            } else {
+                return 'Paper'
+            }
+        }
+
+        let computerScore = 0;
+        let playerScore = 0;
+
+        // Single round of RPS
+        function playRound(playerSelection, computerSelection) {
+            if (playerSelection == 'rock' && computerSelection == 'Paper') {
+                computerScore++
+                return "You lost. Paper beats Rock. loser"
+            } else if (playerSelection == 'rock' && computerSelection == 'Scissor') {
+                playerScore++
+                return "You won. Rock beats Scissor. dumbass"
+            } else if (playerSelection == 'paper' && computerSelection == 'Rock') {
+                playerScore++
+                return "You won. Paper beats Rock. dumbass"
+            } else if (playerSelection == 'paper' && computerSelection == 'Scissor') {
+                computerScore++
+                return "You lost. Scissor beats Paper. loser"
+            } else if (playerSelection == 'scissor' && computerSelection == 'Rock') {
+                computerScore++
+                return "You lost. Rock beats Scissor. loser"
+            } else if (playerSelection == 'scissor' && computerSelection == 'Paper') {
+                playerScore++
+                return "You won. Scissor beats Paper. dumbass"
+            }
+            else return "It's a draw ://"
+        }
+/*
+        const playerSelection = 'rock';
+        const computerSelection = computerPlay();
+        console.log(playRound(playerSelection, computerSelection))
+        console.log(playerSelection)
+        console.log(computerSelection)
+*/
+        // 5 Round game of RPS
+        function game() {
+            for (let i = 0; i < 5; i++) {
+                let playerSelection = prompt('If you wanna lose pick: Rock, Paper, or Scissor')
+                playerSelection = playerSelection.toLowerCase()
+                const computerSelection = computerPlay()
+                console.log(playRound(playerSelection, computerSelection))
+            }
+            if (playerScore > computerScore) {
+                console.log(`You won dawg. Final Score: ${playerScore} to ${computerScore}`);
+            } else if (computerScore > playerScore) {
+                console.log(`You lost. loser. Final Score: ${playerScore} to ${computerScore}`)
+            } else 
+                console.log(`Y'all tied somehow. Final Score: ${playerScore} to ${computerScore}`)
+        }
+        game();
+
+    </script>
+</body>
+</html>
